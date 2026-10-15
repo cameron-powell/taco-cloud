@@ -16,6 +16,8 @@ import tacos.Ingredient.Type;
 import tacos.Taco;
 import tacos.TacoOrder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 
 @Slf4j 
@@ -69,5 +71,12 @@ public class DesignTacoController {
             .filter(x -> x.getType().equals(type))
             .collect(Collectors.toList());
     }
-    
+
+    @PostMapping
+    public String processTaco(Taco taco, @ModelAttribute TacoOrder tacoOrder) {
+        tacoOrder.addTaco(taco);
+        log.info("Processing taco: {}", taco);
+
+        return "redirect:/orders/current";
+    }
 }
