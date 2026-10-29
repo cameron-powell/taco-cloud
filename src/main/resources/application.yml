@@ -16,10 +16,12 @@ logging:
 
 ---
 spring:
-  profiles: prod
+  config:
+    activate:
+      on-profile: prod
 
   datasource:
-    url: jdbc:/mysql:/ /localhost/tacocloud
+    url: jdbc:mysql://localhost/tacocloud
     username: tacouser
     password: tacopassword
 
